@@ -1,0 +1,10 @@
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+
+
+r = requests.get("https://www.century21.com/real-estate/center-ossipee-nh/LCNHCENTEROSSIPEE/")
+c = r.content
+soup = BeautifulSoup(c, "html.parser")
+
+cards = soup.find_all("div", {"class": "property-card"})
