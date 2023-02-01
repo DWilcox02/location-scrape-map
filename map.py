@@ -6,28 +6,22 @@ df = pd.read_csv("Locations.csv")
 
 map=folium.Map(location=[df["Latitude"].mean(), df["Longitude"].mean()], zoom_start=16, control_scale=True)
 
+colours = {
+    "home": "red",
+    "remarkable house": "blue",
+    "remarkable buildings": "blue",
+    "fountain": "purple",
+    "museum": "pink",
+    "monument": "orange",
+    "park or square": "green",
+    "religious building": "white",
+    "district" : "lightblue"
+}
+
 def setColour(locationType):
-    colour = ""
-    if locationType == "home":
-        colour = "red"
-    elif locationType == "remarkable house":
-        colour = "blue"
-    elif locationType == "remarkable buildings":
-        colour = "blue"
-    elif locationType == "fountain":
-        colour = "purple"
-    elif locationType == "museum":
-        colour = "pink"
-    elif locationType == "monument":
-        colour = "orange"
-    elif locationType == "park or square":
-        colour = "green"
-    elif locationType == "religious building":
-        colour = "white"
-    elif locationType == "district":
-        colour = "lightblue"
-    else:
-        colour = "black"
+    colour = colours[locationType]
+    if colour == None:
+        return "black"
     return colour
 
 for index, locationInfo in df.iterrows():
